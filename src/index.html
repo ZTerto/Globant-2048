@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2048</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
+
 <body>
   <div class="game-container">
-    <h1>2048</h1>
 
-    <div class="score-container">
-      <span>Score: <span id="score">0</span></span>
-      <button id="restart-btn">Restart</button>
-    </div>
+<div class="header-section">
+  <h1 class="main-title">2048</h1>
+</div>
+
+<div class="description-section">
+  <p class="description">
+    The game starts with two tiles, each randomly placed on the grid. The initial values of these tiles are either 2 or 4. Players can move the tiles using keyboard arrow keys or the W, A, S, D keys
+  </p>
+  <p class="translated">
+    El juego comienza con dos casillas, colocadas aleatoriamente en la cuadrícula. Los valores iniciales son 2 o 4. Se puede mover las casillas con las flechas del teclado o utilizando las teclas W, A, S, D
+  </p>
+</div>
+
+<div class="keyboard-info">
+  <img src="img/tutorial.png" alt="Arrow Up" class="tutorial" />
+</div>
 
     <div class="grid-container">
       <div class="row">
@@ -42,6 +55,13 @@
       </div>
     </div>
   </div>
+
+<div class="score-container">
+  <span>Score: <span id="score">0</span></span>
+  <button id="restart-btn">Restart</button>
+  <button id="back-btn">Back</button>
+</div>
+
 
   <script type="module" src="script.js"></script>
 </body>

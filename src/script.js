@@ -1,9 +1,11 @@
 	const tiles = document.querySelectorAll(".tile");
 	const scoreElement = document.getElementById("score");
 	const restartButton = document.getElementById("restart-btn");
+	const backButton = document.getElementById("back-btn");
 
 	//20251201
 	// initGame -> updateScore -> insertRandomTile
+	// Inserta un nuevo número (2 o 4) en una celda vacía aleatoria
 	function insertRandomTile() 
 	{
 		const emptyTiles = Array.from(tiles).filter(tile => tile.textContent === "");
@@ -27,6 +29,7 @@
 
 	//20251201
 	// initGame -> updateScore
+	// Actualiza el marcador y añade dos números iniciales
 	function updateScore(value) 
 	{
 		scoreElement.textContent = value;
@@ -35,6 +38,7 @@
 	}
 
 	//20251201
+	// initGame -> updateScore
 	// Inicializamos el juego
 	function initGame() 
 	{
@@ -47,7 +51,8 @@
 	}
 
 	//20251201
-	// Crea una matriz con los valores actuales del tablero
+	// Press key -> getBoardState
+	// Obtiene el estado actual del tablero como una matriz 2D
 	function getBoardState()
 	{
 		const board = [];
@@ -70,6 +75,7 @@
 	}
 
 	//20251201
+	// Press key -> resetNumbers
 	// Reinicia el contenido de todas las celdas
 	function resetNumbers() 
 	{
@@ -81,6 +87,7 @@
 	}
 
 	//20251201
+	// Press key -> moveUpWithMerge
 	// Fusionar hacia arriba
 	function moveUpWithMerge(column) 
 	{
@@ -120,6 +127,7 @@
 
 
 	//20251201
+	// Press key -> moveDownWithMerge
 	// Fusionar hacia abajo
 	function moveDownWithMerge(column) 
 	{
@@ -159,6 +167,7 @@
 
 
 	//20251201
+	// Press key -> moveLeftWithMerge
 	// Fusionar hacia la izquierda
 	function moveLeftWithMerge(row) 
 	{
@@ -197,6 +206,7 @@
 	}
 
 	//20251201
+	// Press key -> moveRightWithMerge
 	// Fusionar hacia la derecha
 	function moveRightWithMerge(row) 
 	{
@@ -236,7 +246,8 @@
 
 
 	//20251201
-	// Actualiza el DOM con los nuevos valores de la matriz
+	// Press key -> UpdateBoard
+	// Actualiza el tablero con una nueva matriz de valores
 	function updateBoard(board) 
 	{
 		let row = 0;
@@ -263,7 +274,9 @@
 		}
 	}
 
-
+	//20251201
+	// Press key -> checkGameOver
+	// Comprueba si el juego ha terminado (victoria o derrota)
 	function checkGameOver() 
 	{
 		const board = getBoardState();
@@ -292,26 +305,28 @@
 
 				if (current === 2048)
 				{
-					alert("Victoria!");
-					initGame();
+					alert("🏆Victoria!");
+					lastBoard = null;
 				}
 				col++;
 			}
 			row++;
 		}
-		alert("💀 Derrota");
-		initGame();
+		alert("💀Derrota");
+		lastBoard = null;
 	}
 
 
 	//20251201
-	// Evento para teclas: W A S D / Flechas
+	// Press key
+	// Maneja las pulsaciones de teclas para mover las celdas
 	document.addEventListener("keydown", (event) => 
 	{
 		if (event.key === "ArrowUp" || event.key === "w") 
 		{
 			console.log("⬆️ Arriba");
 			const board = getBoardState();
+			lastBoard = JSON.parse(JSON.stringify(board));
 			const newBoard = [[], [], [], []];
 			let col = 0;
 			while (col < 4) 
@@ -335,12 +350,16 @@
 			resetNumbers();
 			updateBoard(newBoard);
 			checkGameOver();
-			insertRandomTile();
+			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
+			{
+				insertRandomTile();
+			}
 		}
 		else if (event.key === "ArrowLeft" || event.key === "a") 
 		{
 			console.log("⬅️ Izquierda");
 			const board = getBoardState();
+			lastBoard = JSON.parse(JSON.stringify(board));
 			const newBoard = [];
 			let i = 0;
 			while (i < board.length) 
@@ -351,12 +370,16 @@
 			resetNumbers();
 			updateBoard(newBoard);
 			checkGameOver();
-			insertRandomTile();
+			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
+			{
+				insertRandomTile();
+			}
 		}
 		else if (event.key === "ArrowRight" || event.key === "d") 
 		{
 			console.log("➡️ Derecha");
 			const board = getBoardState();
+			lastBoard = JSON.parse(JSON.stringify(board));
 			const newBoard = [];
 			let i = 0;
 			while (i < board.length) 
@@ -367,12 +390,16 @@
 			resetNumbers();
 			updateBoard(newBoard);
 			checkGameOver();
-			insertRandomTile();
+			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
+			{
+				insertRandomTile();
+			}
 		}
 		else if (event.key === "ArrowDown" || event.key === "s") 
 		{
 			console.log("⬇️ Abajo");
 			const board = getBoardState();
+			lastBoard = JSON.parse(JSON.stringify(board));
 			const newBoard = [[], [], [], []];
 			let col = 0;
 			while (col < 4) 
@@ -396,7 +423,10 @@
 			resetNumbers();
 			updateBoard(newBoard);
 			checkGameOver();
-			insertRandomTile();
+			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
+			{
+				insertRandomTile();
+			}
 		}
 		else
 		{
@@ -410,6 +440,18 @@
 	restartButton.addEventListener("click", () => 
 	{
 		initGame();
+	});
+
+	//20251202
+	// Click en botón "Back"
+	let lastBoard = null;
+	backButton.addEventListener("click", () => 
+	{
+		if (lastBoard) 
+		{
+			resetNumbers();
+			updateBoard(lastBoard);
+		}
 	});
 
 	//20251201

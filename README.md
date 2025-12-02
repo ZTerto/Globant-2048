@@ -1,4 +1,4 @@
-# 2048 Game (F.Docker)
+# 2048 Game (F. Docker)
 
 Este proyecto es una implementación del clásico juego **2048** usando **HTML, CSS y JavaScript**, ejecutado dentro de un contenedor **Docker** para facilitar la portabilidad y evaluación.
 

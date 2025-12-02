@@ -248,8 +248,10 @@
 	//20251201
 	// Press key -> UpdateBoard
 	// Actualiza el tablero con una nueva matriz de valores
+	let score = 0;
 	function updateBoard(board) 
 	{
+		score = 0;
 		let row = 0;
 		while (row < 4) 
 		{
@@ -267,16 +269,19 @@
 				{
 					tile.textContent = value;
 					tile.setAttribute("data-value", value);
+					score += value;
 				}
 				col++;
 			}
 			row++;
 		}
+		scoreElement.textContent = score;
 	}
+
 
 	//20251201
 	// Press key -> checkGameOver
-	// Comprueba si el juego ha terminado (victoria o derrota)
+	// Comprueba si el juego ha terminado por derrota
 	function checkGameOver() 
 	{
 		const board = getBoardState();
@@ -288,36 +293,56 @@
 			{
 				const current = board[row][col];
 
-				// 🟢 Aún hay una casilla vacía
-				if (current === 0) return;
+				if (current === 0) 
+					return;
 
-				// ⬅️ Casilla izquierda
-				if (col > 0 && current === board[row][col - 1]) return;
+				if (col > 0 && current === board[row][col - 1]) 
+					return;
 
-				// ➡️ Casilla derecha
-				if (col < 3 && current === board[row][col + 1]) return;
+				if (col < 3 && current === board[row][col + 1]) 
+					return;
 
-				// ⬆️ Casilla arriba
-				if (row > 0 && current === board[row - 1][col]) return;
+				if (row > 0 && current === board[row - 1][col]) 
+					return;
 
-				// ⬇️ Casilla abajo
-				if (row < 3 && current === board[row + 1][col]) return;
-
-				if (current === 2048)
-				{
-					alert("🏆Victoria!");
-					lastBoard = null;
-				}
+				if (row < 3 && current === board[row + 1][col]) 
+					return;
 				col++;
 			}
 			row++;
 		}
 		alert("💀Derrota");
 		lastBoard = null;
+		score = 0;
+	}
+
+	//20251202
+	// Press key -> checkWin
+	// Comprueba si el jugador ha ganado alcanzando 2048
+	function checkWin() 
+	{
+		let row = 0;
+		while (row < 4) 
+		{
+			let col = 0;
+			while (col < 4) 
+			{
+				if (getBoardState()[row][col] === 2048) 
+				{
+					alert("🏆Victoria!");
+					lastBoard = null;
+					score = 0;
+					return;
+				}
+				col++;
+			}
+			row++;
+		}
 	}
 
 
-	//20251201
+
+	//20251202
 	// Press key
 	// Maneja las pulsaciones de teclas para mover las celdas
 	document.addEventListener("keydown", (event) => 
@@ -327,6 +352,7 @@
 			console.log("⬆️ Arriba");
 			const board = getBoardState();
 			lastBoard = JSON.parse(JSON.stringify(board));
+			lastScore = score;
 			const newBoard = [[], [], [], []];
 			let col = 0;
 			while (col < 4) 
@@ -347,12 +373,13 @@
 				}
 				col++;
 			}
-			resetNumbers();
-			updateBoard(newBoard);
-			checkGameOver();
 			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
 			{
+				resetNumbers();
+				updateBoard(newBoard);
 				insertRandomTile();
+				checkWin();
+				checkGameOver();
 			}
 		}
 		else if (event.key === "ArrowLeft" || event.key === "a") 
@@ -360,6 +387,7 @@
 			console.log("⬅️ Izquierda");
 			const board = getBoardState();
 			lastBoard = JSON.parse(JSON.stringify(board));
+			lastScore = score;
 			const newBoard = [];
 			let i = 0;
 			while (i < board.length) 
@@ -367,12 +395,13 @@
 				newBoard.push(moveLeftWithMerge(board[i]));
 				i++;
 			}
-			resetNumbers();
-			updateBoard(newBoard);
-			checkGameOver();
 			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
 			{
+				resetNumbers();
+				updateBoard(newBoard);
 				insertRandomTile();
+				checkWin();
+				checkGameOver();
 			}
 		}
 		else if (event.key === "ArrowRight" || event.key === "d") 
@@ -380,6 +409,7 @@
 			console.log("➡️ Derecha");
 			const board = getBoardState();
 			lastBoard = JSON.parse(JSON.stringify(board));
+			lastScore = score;
 			const newBoard = [];
 			let i = 0;
 			while (i < board.length) 
@@ -387,12 +417,13 @@
 				newBoard.push(moveRightWithMerge(board[i]));
 				i++;
 			}
-			resetNumbers();
-			updateBoard(newBoard);
-			checkGameOver();
 			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
 			{
+				resetNumbers();
+				updateBoard(newBoard);
 				insertRandomTile();
+				checkWin();
+				checkGameOver();
 			}
 		}
 		else if (event.key === "ArrowDown" || event.key === "s") 
@@ -400,6 +431,7 @@
 			console.log("⬇️ Abajo");
 			const board = getBoardState();
 			lastBoard = JSON.parse(JSON.stringify(board));
+			lastScore = score;
 			const newBoard = [[], [], [], []];
 			let col = 0;
 			while (col < 4) 
@@ -420,12 +452,13 @@
 				}
 				col++;
 			}
-			resetNumbers();
-			updateBoard(newBoard);
-			checkGameOver();
 			if (JSON.stringify(lastBoard) !== JSON.stringify(newBoard)) 
 			{
+				resetNumbers();
+				updateBoard(newBoard);
 				insertRandomTile();
+				checkWin();
+				checkGameOver();
 			}
 		}
 		else
@@ -440,19 +473,25 @@
 	restartButton.addEventListener("click", () => 
 	{
 		initGame();
+		lastBoard = null;
+		score = 0;
 	});
 
 	//20251202
 	// Click en botón "Back"
 	let lastBoard = null;
+	let lastScore = 0;
 	backButton.addEventListener("click", () => 
 	{
 		if (lastBoard) 
 		{
 			resetNumbers();
 			updateBoard(lastBoard);
+			score = lastScore;
+			scoreElement.textContent = score;
 		}
 	});
+
 
 	//20251201
 	// Primera carga del juego

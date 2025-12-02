@@ -25,7 +25,7 @@ body {
 }
 
 .description-section {
-  max-width: 500px;
+  max-width: 400px;
   margin: 10px auto 30px auto;
   text-align: center;
 }
@@ -57,7 +57,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #a0a7b4;
+  background-color: #bfc3cc;
   padding: 10px;
   width: max-content;
   margin: auto;
@@ -75,10 +75,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 42px;
+  font-size: 32px;
   font-weight: bold;
   border-radius: 15px;
 }
+
+/* Colores según valor */
+.tile[data-value="2"]     { color: #000000; }
+.tile[data-value="4"]     { color: #353330; }
+.tile[data-value="8"]     { color: #705f45; }
+.tile[data-value="16"]    { color: #97814a; }
+.tile[data-value="32"]    { color: #a59344; }
+.tile[data-value="64"]    { color: #b9ac33; }
+.tile[data-value="128"]   { color: #d1c132; }
+.tile[data-value="256"]   { color: #dbcb34; }
+.tile[data-value="512"]   { color: #f1dd27; }
+.tile[data-value="1024"]  { color: #e7d510; }
+.tile[data-value="2048"]  { color: #ffa600; }
+
 
 /* ========== Contenedor de puntuación y botón de reinicio ========== */
 .score-container {

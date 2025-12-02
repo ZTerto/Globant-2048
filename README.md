@@ -19,7 +19,6 @@ git clone https://github.com/ZTerto/Globant-2048.git
 cd Globant-2048
 make up
 xdg-open http://127.0.0.1:8080
-make down
 ```
 
 ### 🪟Windows
@@ -28,5 +27,4 @@ git clone https://github.com/ZTerto/Globant-2048.git
 cd Globant-2048
 make up
 start http://127.0.0.1:8080
-make down
 ```

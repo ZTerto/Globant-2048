@@ -2,9 +2,9 @@
 Este proyecto es una implementación del clásico juego **2048** usando **HTML, CSS y JavaScript**, ejecutado dentro de un contenedor **Docker** para facilitar la portabilidad y evaluación.
 
 
--
+---
 ## Path
-.
+```bash
 └── Globant-2048
     ├── docker-compose.yml
     ├── Dockerfile
@@ -18,10 +18,10 @@ Este proyecto es una implementación del clásico juego **2048** usando **HTML, 
         ├── index.html
         ├── script.js
         └── styles.css
+```
 
 
-
--
+---
 ## Requisitos
 - Entorno compatible con contenedores: Linux, macOS o WSL2 (Windows).
 - Tener instalado **Docker** y **docker-compose**.
@@ -40,7 +40,7 @@ docker --version
 ```
 
 
--
+---
 ## Cómo ejecutar el juego
 
 ### 🐧 Linux / WSL

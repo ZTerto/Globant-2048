@@ -2,15 +2,57 @@
 Este proyecto es una implementación del clásico juego **2048** usando **HTML, CSS y JavaScript**, ejecutado dentro de un contenedor **Docker** para facilitar la portabilidad y evaluación.
 
 
+<<<<<<< HEAD
 ## Requisitos
 - Tener instalado **Docker** y **docker-compose**.
+=======
+---
+## Path
+```bash
+└── Globant-2048
+    ├── docker-compose.yml
+    ├── Dockerfile
+    ├── Makefile
+    ├── nginx
+    │   └── default.conf
+    ├── README.md
+    └── src
+        ├── img
+        │   └── tutorial.png
+        ├── index.html
+        ├── script.js
+        └── styles.css
+```
+
+
+---
+## Requisitos
+>>>>>>> 89ac00188c8ac65b7dc9c13196e229b2c22150c6
 - Entorno compatible con contenedores: Linux, macOS o WSL2 (Windows).
+- Tener instalado **Docker** y **docker-compose**.
+
+### 🐧 Linux / WSL
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+### 🪟Windows
+Descarga e instala Docker Desktop desde:
+- https://www.docker.com/products/docker-desktop/
+```bash
+docker --version
+```
 
 
+<<<<<<< HEAD
 ## 📸 Vista del Proyecto
 ![2048](./2048.png)
 
 
+=======
+---
+>>>>>>> 89ac00188c8ac65b7dc9c13196e229b2c22150c6
 ## Cómo ejecutar el juego
 
 ### 🐧 Linux / WSL
@@ -27,4 +69,8 @@ git clone https://github.com/ZTerto/Globant-2048.git
 cd Globant-2048
 make up
 start http://127.0.0.1:8080
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 89ac00188c8ac65b7dc9c13196e229b2c22150c6

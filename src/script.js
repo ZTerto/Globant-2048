@@ -248,35 +248,45 @@
 	//20251201
 	// Press key -> UpdateBoard
 	// Actualiza el tablero con una nueva matriz de valores
-	let score = 0;
-	function updateBoard(board) 
+let score = 0;
+function updateBoard(board) 
+{
+	score = 0;
+	let row = 0;
+	while (row < 4) 
 	{
-		score = 0;
-		let row = 0;
-		while (row < 4) 
+		let col = 0;
+		while (col < 4) 
 		{
-			let col = 0;
-			while (col < 4) 
+			const tile = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+			const previousValue = parseInt(tile.textContent) || 0;
+			const value = board[row][col];
+
+			if (value === 0) 
 			{
-				const tile = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-				const value = board[row][col];
-				if (value === 0) 
-				{
-					tile.textContent = "";
-					tile.removeAttribute("data-value");
-				}
-				else
-				{
-					tile.textContent = value;
-					tile.setAttribute("data-value", value);
-					score += value;
-				}
-				col++;
+				tile.textContent = "";
+				tile.removeAttribute("data-value");
 			}
-			row++;
+			else
+			{
+				tile.textContent = value;
+				tile.setAttribute("data-value", value);
+				score += value;
+				// Añadir clase para animación
+				tile.classList.add("merged");
+
+				// Eliminar la clase después de la animación (evita acumulación)
+				setTimeout(() => {
+					tile.classList.remove("merged");
+				}, 200); // debe coincidir con la duración en CSS
+
+			}
+			col++;
 		}
-		scoreElement.textContent = score;
+		row++;
 	}
+	scoreElement.textContent = score;
+}
 
 
 	//20251201

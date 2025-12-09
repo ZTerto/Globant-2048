@@ -1,11 +1,9 @@
 # 2048 Game – Docker Edition
 Este proyecto es una implementación del clásico juego **2048** usando **HTML, CSS y JavaScript**, ejecutado dentro de un contenedor **Docker** para facilitar la portabilidad y evaluación.
 
-
-<<<<<<< HEAD
 ## Requisitos
 - Tener instalado **Docker** y **docker-compose**.
-=======
+
 ---
 ## Path
 ```bash
@@ -24,10 +22,8 @@ Este proyecto es una implementación del clásico juego **2048** usando **HTML, 
         └── styles.css
 ```
 
-
 ---
 ## Requisitos
->>>>>>> 89ac00188c8ac65b7dc9c13196e229b2c22150c6
 - Entorno compatible con contenedores: Linux, macOS o WSL2 (Windows).
 - Tener instalado **Docker** y **docker-compose**.
 
@@ -44,15 +40,11 @@ Descarga e instala Docker Desktop desde:
 docker --version
 ```
 
-
-<<<<<<< HEAD
 ## 📸 Vista del Proyecto
 ![2048](./2048.png)
 
-
 =======
----
->>>>>>> 89ac00188c8ac65b7dc9c13196e229b2c22150c6
+
 ## Cómo ejecutar el juego
 
 ### 🐧 Linux / WSL
@@ -71,6 +63,3 @@ make up
 start http://127.0.0.1:8080
 <<<<<<< HEAD
 ```
-=======
-```
->>>>>>> 89ac00188c8ac65b7dc9c13196e229b2c22150c6

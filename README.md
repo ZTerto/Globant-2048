@@ -43,8 +43,6 @@ docker --version
 ## 📸 Vista del Proyecto
 ![2048](./2048.png)
 
-=======
-
 ## Cómo ejecutar el juego
 
 ### 🐧 Linux / WSL
@@ -61,5 +59,4 @@ git clone https://github.com/ZTerto/Globant-2048.git
 cd Globant-2048
 make up
 start http://127.0.0.1:8080
-<<<<<<< HEAD
 ```

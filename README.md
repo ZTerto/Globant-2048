@@ -41,7 +41,7 @@ docker --version
 ```
 
 ## 📸 Vista del Proyecto
-![2048](./2048.png)
+![2048](./public/2048.png)
 
 ## Cómo ejecutar el juego
 
